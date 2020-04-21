@@ -1,11 +1,9 @@
 import React from 'react';
 
-import CustomNavigation from './NavigationStyles'
-
 const Navigation = () => (
-  <CustomNavigation>
-    <p>Sign Out</p>
-  </CustomNavigation>
+  <nav style={{ display: 'flex', justifyContent: 'flex-end' }}>
+    <p className='f3 link dim black underline pa3 pointer'>Sign Out</p>
+  </nav>
 );
 
 export default Navigation;
