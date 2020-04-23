@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Particles from 'react-particles-js';
 
 import Navigation from './components/navigation/Navigation';
@@ -22,22 +22,43 @@ const particlesOptions = {
       onhover: {
         enable: 'true',
         mode: 'repulse',
-      }
+      },
     },
   },
 };
 
-function App() {
-  return (
-    <div className='App'>
-      <Particles className='particles' params={particlesOptions} />
-      <Navigation />
-      <Logo />
-      <Rank />
-      <ImageInputForm />
-      {/*  <FacialRecognition /> */}
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      input: '',
+    };
+  }
+
+  handleInputChange = e => {
+    console.log(e.target.value);
+  };
+
+  handleSubmit = () => {
+    console.log('click');
+  };
+
+  render() {
+    return (
+      <div>
+        <Particles className='particles' params={particlesOptions} />
+        <Navigation />
+        <Logo />
+        <Rank />
+        <ImageInputForm
+          onInputChange={this.handleInputChange}
+          onButtonSubmit={this.handleSubmit}
+        />
+        {/*  <FacialRecognition /> */}
+      </div>
+    );
+  }
 }
 
 export default App;

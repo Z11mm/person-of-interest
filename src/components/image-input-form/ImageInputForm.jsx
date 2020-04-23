@@ -1,22 +1,29 @@
-import React from 'react'
+import React from 'react';
 
 import './ImageInputForm.css';
 
-const ImageInputForm = () => {
+const ImageInputForm = ({ onInputChange, onButtonSubmit }) => {
   return (
     <div>
-      <p className='f5'>{'This is magic'}</p>
+      <p className='f5 center'>{'This is magic'}</p>
 
-      <div className="center">
-        <div className="form center pa4 br3 shadow-5">
-          <input type='text' className='f3 pa2 w-70 center' />
-          <button className='w-30 grow f5 link ph3 pv2 dib white bg-light-blue'>
+      <div className='center'>
+        <div className='form center pa4 br3 shadow-5'>
+          <input
+            type='text'
+            className='f3 pa2 w-70 center'
+            onChange={onInputChange}
+          />
+          <button
+            className='w-30 grow f5 link ph3 pv2 dib white bg-light-blue'
+            onClick={onButtonSubmit}
+          >
             Detect Faces
           </button>
         </div>
       </div>
     </div>
   );
- }
+};
 
-export default ImageInputForm
+export default ImageInputForm;

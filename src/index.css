@@ -9,7 +9,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: linear-gradient(to right, #9bc8df, #cde6f4, #e3f3fb );
+  background-image: linear-gradient(to right, #9bc8df, #cde6f4, #cfbca6 );
 }
 
 button {
