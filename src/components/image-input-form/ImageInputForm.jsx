@@ -11,7 +11,7 @@ const ImageInputForm = ({ onInputChange, onButtonSubmit }) => {
         <div className='form center pa4 br3 shadow-5'>
           <input
             type='text'
-            className='f3 pa2 w-70 center'
+            className='f5 pa2 w-70 center'
             onChange={onInputChange}
           />
           <button
