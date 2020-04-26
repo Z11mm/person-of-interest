@@ -47,8 +47,8 @@ class App extends Component {
   calculateFaceRegion = data => {
     const faceRegion = data.outputs[0].data.regions[0].region_info.bounding_box;
     const image = document.querySelector('#inputimage');
-    const width = image.width;
-    const height = image.height;
+    const width = Number(image.width);
+    const height = Number(image.height);
     return {
       topRow: faceRegion.top_row * height,
       leftCol: faceRegion.left_col * width,
