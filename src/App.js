@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Particles from 'react-particles-js';
 import Clarifai from 'clarifai';
 
 import Navigation from './components/navigation/Navigation';
 import SignIn from './components/sign-in/SignIn';
+import SignUp from './components/sign-up/SignUp';
 import Logo from './components/logo/Logo';
 import ImageInputForm from './components/image-input-form/ImageInputForm';
 import Rank from './components/rank/Rank';
@@ -41,7 +42,8 @@ class App extends Component {
     this.state = {
       input: '',
       imageUrl: '',
-      box: {}
+      box: {},
+      route: 'signin'
     };
   }
 
@@ -80,19 +82,34 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
+  handleRouteChange = route => {
+    this.setState({ route: route });
+  };
+
   render() {
     return (
       <div>
         <Particles className='particles' params={particlesOptions} />
-        <Navigation />
-        <SignIn />
-        <Logo />
-        <Rank />
-        <ImageInputForm
-          onInputChange={this.handleInputChange}
-          onButtonSubmit={this.handleSubmit}
-        />
-        <FacialRecognition boundingBox={this.state.box} imageUrl={this.state.imageUrl} />
+        <Navigation onRouteChange={this.handleRouteChange} />
+
+        {this.state.route === 'home' ? (
+          <Fragment>
+            <Logo />
+            <Rank />
+            <ImageInputForm
+              onInputChange={this.handleInputChange}
+              onButtonSubmit={this.handleSubmit}
+            />
+            <FacialRecognition
+              boundingBox={this.state.box}
+              imageUrl={this.state.imageUrl}
+            />
+          </Fragment>
+        ) : this.state.route === 'signin' ? (
+          <SignIn onRouteChange={this.handleRouteChange} />
+        ) : (
+          <SignUp onRouteChange={this.handleRouteChange} />
+        )}
       </div>
     );
   }
