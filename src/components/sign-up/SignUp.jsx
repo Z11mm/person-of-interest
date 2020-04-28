@@ -4,7 +4,7 @@ const SignUp = ({ onRouteChange }) => {
   return (
     <main>
       <article className='pa4 black-80 br2 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 center shadow-5'>
-        <form className='measure'>
+        <div className='measure'>
           <fieldset id='sign_up' className='ba b--transparent ph0 mh0'>
             <legend className='f2 fw6 ph0 mh0'>Sign Up</legend>
             <div className='mt3'>
@@ -49,7 +49,7 @@ const SignUp = ({ onRouteChange }) => {
               value='Sign Up'
             />
           </div>
-        </form>
+        </div>
       </article>
     </main>
   );
