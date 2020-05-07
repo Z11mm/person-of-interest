@@ -48,6 +48,12 @@ class App extends Component {
     };
   }
 
+  componentDidMount() {
+    fetch('http://localhost:3000')
+      .then(response => response.json())
+      .then(console.log);
+  }
+
   calculateFaceRegion = data => {
     const faceRegion = data.outputs[0].data.regions[0].region_info.bounding_box;
     const image = document.querySelector('#inputimage');
@@ -110,10 +116,7 @@ class App extends Component {
               onInputChange={this.handleInputChange}
               onButtonSubmit={this.handleSubmit}
             />
-            <FacialRecognition
-              boundingBox={box}
-              imageUrl={imageUrl}
-            />
+            <FacialRecognition boundingBox={box} imageUrl={imageUrl} />
           </Fragment>
         ) : route === 'signin' ? (
           <SignIn onRouteChange={this.handleRouteChange} />
