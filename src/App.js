@@ -44,15 +44,26 @@ class App extends Component {
       imageUrl: '',
       box: {},
       route: 'signin',
-      isSignedIn: false
+      isSignedIn: false,
+      user: {
+        id: '125',
+        name: '',
+        email: '',
+        entries: 0,
+        joined: ''
+      }
     };
   }
 
-  componentDidMount() {
-    fetch('http://localhost:3000')
-      .then(response => response.json())
-      .then(console.log);
-  }
+  createUser = data => {
+    this.setState({
+      id: data.id,
+      name: data.name,
+      email: data.email,
+      entries: data.entries,
+      joined: data.joined
+    });
+  };
 
   calculateFaceRegion = data => {
     const faceRegion = data.outputs[0].data.regions[0].region_info.bounding_box;
@@ -121,7 +132,7 @@ class App extends Component {
         ) : route === 'signin' ? (
           <SignIn onRouteChange={this.handleRouteChange} />
         ) : (
-          <SignUp onRouteChange={this.handleRouteChange} />
+          <SignUp createUser={this.createUser} onRouteChange={this.handleRouteChange} />
         )}
       </div>
     );
