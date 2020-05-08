@@ -122,7 +122,10 @@ class App extends Component {
         {route === 'home' ? (
           <Fragment>
             <Logo />
-            <Rank />
+            <Rank
+              name={this.state.user.name}
+              entries={this.state.user.entries}
+            />
             <ImageInputForm
               onInputChange={this.handleInputChange}
               onButtonSubmit={this.handleSubmit}
@@ -132,7 +135,10 @@ class App extends Component {
         ) : route === 'signin' ? (
           <SignIn onRouteChange={this.handleRouteChange} />
         ) : (
-          <SignUp createUser={this.createUser} onRouteChange={this.handleRouteChange} />
+          <SignUp
+            createUser={this.createUser}
+            onRouteChange={this.handleRouteChange}
+          />
         )}
       </div>
     );
