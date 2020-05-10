@@ -40,7 +40,7 @@ class SignUp extends Component {
     })
       .then(response => response.json())
       .then(user => {
-        if (user.id) {
+        if (user) {
           this.props.createUser(user)
           this.props.onRouteChange('home');
         }

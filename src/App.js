@@ -56,13 +56,16 @@ class App extends Component {
   }
 
   createUser = data => {
-    this.setState({
-      id: data.id,
-      name: data.name,
-      email: data.email,
-      entries: data.entries,
-      joined: data.joined
-    });
+    this.setState(prevState => ({
+      user: {
+        ...prevState.user,
+        id: data.id,
+        name: data.name,
+        email: data.email,
+        entries: data.entries,
+        joined: data.joined
+      }
+    }));
   };
 
   calculateFaceRegion = data => {
@@ -89,14 +92,29 @@ class App extends Component {
     });
   };
 
-  handleSubmit = () => {
+  handleImageSubmit = () => {
     this.setState({
       imageUrl: this.state.input
     });
 
     app.models
       .predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
-      .then(response => this.setBoundingBox(this.calculateFaceRegion(response)))
+      .then(response => {
+        if (response) {
+          fetch('http://localhost:3000/image', {
+            method: 'put',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              id: this.state.user.id
+            })
+          })
+            .then(response => response.json())
+            .then(count => {
+              this.setState(Object.assign(this.state.user, { entries: count }));
+            });
+        }
+        this.setBoundingBox(this.calculateFaceRegion(response));
+      })
       .catch(err => console.log(err));
   };
 
@@ -128,7 +146,7 @@ class App extends Component {
             />
             <ImageInputForm
               onInputChange={this.handleInputChange}
-              onButtonSubmit={this.handleSubmit}
+              onButtonSubmit={this.handleImageSubmit}
             />
             <FacialRecognition boundingBox={box} imageUrl={imageUrl} />
           </Fragment>
