@@ -151,7 +151,10 @@ class App extends Component {
             <FacialRecognition boundingBox={box} imageUrl={imageUrl} />
           </Fragment>
         ) : route === 'signin' ? (
-          <SignIn onRouteChange={this.handleRouteChange} />
+          <SignIn
+            createUser={this.createUser}
+            onRouteChange={this.handleRouteChange}
+          />
         ) : (
           <SignUp
             createUser={this.createUser}

@@ -22,7 +22,6 @@ class SignIn extends Component {
   };
 
   handleSignInSubmit = () => {
-    // console.log(this.state)
     fetch('http://localhost:3000/signin', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
@@ -32,8 +31,9 @@ class SignIn extends Component {
       })
     })
       .then(response => response.json())
-      .then(data => {
-        if (data === 'success') {
+      .then(user => {
+        if (user.id) {
+          this.props.createUser(user);
           this.props.onRouteChange('home');
         }
       });
