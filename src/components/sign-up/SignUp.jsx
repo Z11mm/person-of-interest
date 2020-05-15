@@ -29,7 +29,7 @@ class SignUp extends Component {
   };
 
   handleSignUpSubmit = () => {
-    fetch('http://localhost:3000/signup', {
+    fetch('https://fast-harbor-72819.herokuapp.com/signup', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -41,7 +41,7 @@ class SignUp extends Component {
       .then(response => response.json())
       .then(user => {
         if (user.id) {
-          this.props.createUser(user)
+          this.props.createUser(user);
           this.props.onRouteChange('home');
         }
       });
