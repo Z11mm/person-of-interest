@@ -1,6 +1,5 @@
 {
   "name": "person-of-interest",
-  "homepage": "https://z11mm.github.io/person-of-interest/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
